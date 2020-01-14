@@ -34,35 +34,45 @@
             this.lstCar = new System.Windows.Forms.ListBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnSave = new System.Windows.Forms.Button();
+            this.btnRefuellingSave = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.txtAmount = new System.Windows.Forms.TextBox();
             this.lstUser = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.btnCancel = new System.Windows.Forms.Button();
+            this.labelUserDB = new System.Windows.Forms.Label();
+            this.labelCarsDB = new System.Windows.Forms.Label();
+            this.dataGridViewUser = new System.Windows.Forms.DataGridView();
+            this.dataGridViewCar = new System.Windows.Forms.DataGridView();
+            this.CarID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CarMake = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CarModel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CarRegNr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnCarCancel = new System.Windows.Forms.Button();
             this.txtCarRegNr = new System.Windows.Forms.TextBox();
             this.btnCarDelete = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
+            this.labelCarRegNr = new System.Windows.Forms.Label();
             this.btnCarSave = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
+            this.labelCarModel = new System.Windows.Forms.Label();
             this.txtCarModel = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
+            this.labelCarMake = new System.Windows.Forms.Label();
             this.txtCarMake = new System.Windows.Forms.TextBox();
-            this.btnUsRCancel = new System.Windows.Forms.Button();
+            this.btnUsrCancel = new System.Windows.Forms.Button();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.btnUserDelete = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.labelUserConf = new System.Windows.Forms.Label();
+            this.labelEmail = new System.Windows.Forms.Label();
+            this.labelCarConf = new System.Windows.Forms.Label();
             this.btnUserSave = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
+            this.labelLastName = new System.Windows.Forms.Label();
             this.txtLastName = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.labelFirstName = new System.Windows.Forms.Label();
             this.txtFirstName = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUser)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCar)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -82,7 +92,7 @@
             this.tabPage1.Controls.Add(this.lstCar);
             this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Controls.Add(this.btnSave);
+            this.tabPage1.Controls.Add(this.btnRefuellingSave);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.txtAmount);
             this.tabPage1.Controls.Add(this.lstUser);
@@ -127,14 +137,14 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "Car";
             // 
-            // btnSave
+            // btnRefuellingSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(27, 141);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 4;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnRefuellingSave.Location = new System.Drawing.Point(27, 141);
+            this.btnRefuellingSave.Name = "btnRefuellingSave";
+            this.btnRefuellingSave.Size = new System.Drawing.Size(75, 23);
+            this.btnRefuellingSave.TabIndex = 4;
+            this.btnRefuellingSave.Text = "Save";
+            this.btnRefuellingSave.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -162,25 +172,29 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.btnCancel);
+            this.tabPage2.Controls.Add(this.labelUserDB);
+            this.tabPage2.Controls.Add(this.labelCarsDB);
+            this.tabPage2.Controls.Add(this.dataGridViewUser);
+            this.tabPage2.Controls.Add(this.dataGridViewCar);
+            this.tabPage2.Controls.Add(this.btnCarCancel);
             this.tabPage2.Controls.Add(this.txtCarRegNr);
             this.tabPage2.Controls.Add(this.btnCarDelete);
-            this.tabPage2.Controls.Add(this.label10);
+            this.tabPage2.Controls.Add(this.labelCarRegNr);
             this.tabPage2.Controls.Add(this.btnCarSave);
-            this.tabPage2.Controls.Add(this.label11);
+            this.tabPage2.Controls.Add(this.labelCarModel);
             this.tabPage2.Controls.Add(this.txtCarModel);
-            this.tabPage2.Controls.Add(this.label12);
+            this.tabPage2.Controls.Add(this.labelCarMake);
             this.tabPage2.Controls.Add(this.txtCarMake);
-            this.tabPage2.Controls.Add(this.btnUsRCancel);
+            this.tabPage2.Controls.Add(this.btnUsrCancel);
             this.tabPage2.Controls.Add(this.txtEmail);
             this.tabPage2.Controls.Add(this.btnUserDelete);
-            this.tabPage2.Controls.Add(this.label8);
-            this.tabPage2.Controls.Add(this.label7);
-            this.tabPage2.Controls.Add(this.label6);
+            this.tabPage2.Controls.Add(this.labelUserConf);
+            this.tabPage2.Controls.Add(this.labelEmail);
+            this.tabPage2.Controls.Add(this.labelCarConf);
             this.tabPage2.Controls.Add(this.btnUserSave);
-            this.tabPage2.Controls.Add(this.label4);
+            this.tabPage2.Controls.Add(this.labelLastName);
             this.tabPage2.Controls.Add(this.txtLastName);
-            this.tabPage2.Controls.Add(this.label3);
+            this.tabPage2.Controls.Add(this.labelFirstName);
             this.tabPage2.Controls.Add(this.txtFirstName);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
@@ -190,14 +204,96 @@
             this.tabPage2.Text = "Configuration";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // btnCancel
+            // labelUserDB
             // 
-            this.btnCancel.Location = new System.Drawing.Point(185, 324);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 24;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
+            this.labelUserDB.AutoSize = true;
+            this.labelUserDB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelUserDB.Location = new System.Drawing.Point(466, 13);
+            this.labelUserDB.Name = "labelUserDB";
+            this.labelUserDB.Size = new System.Drawing.Size(94, 17);
+            this.labelUserDB.TabIndex = 28;
+            this.labelUserDB.Text = "Users in DB";
+            // 
+            // labelCarsDB
+            // 
+            this.labelCarsDB.AutoSize = true;
+            this.labelCarsDB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelCarsDB.Location = new System.Drawing.Point(466, 199);
+            this.labelCarsDB.Name = "labelCarsDB";
+            this.labelCarsDB.Size = new System.Drawing.Size(77, 17);
+            this.labelCarsDB.TabIndex = 27;
+            this.labelCarsDB.Text = "Car in DB";
+            // 
+            // dataGridViewUser
+            // 
+            this.dataGridViewUser.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.dataGridViewUser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewUser.Location = new System.Drawing.Point(308, 33);
+            this.dataGridViewUser.Name = "dataGridViewUser";
+            this.dataGridViewUser.Size = new System.Drawing.Size(438, 128);
+            this.dataGridViewUser.TabIndex = 26;
+            // 
+            // dataGridViewCar
+            // 
+            this.dataGridViewCar.AllowUserToDeleteRows = false;
+            this.dataGridViewCar.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.dataGridViewCar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewCar.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.CarID,
+            this.CarMake,
+            this.CarModel,
+            this.CarRegNr});
+            this.dataGridViewCar.Location = new System.Drawing.Point(308, 219);
+            this.dataGridViewCar.Name = "dataGridViewCar";
+            this.dataGridViewCar.ReadOnly = true;
+            this.dataGridViewCar.Size = new System.Drawing.Size(438, 128);
+            this.dataGridViewCar.TabIndex = 25;
+            this.dataGridViewCar.DoubleClick += new System.EventHandler(this.DataGridViewCar_DoubleClick);
+            // 
+            // CarID
+            // 
+            this.CarID.DataPropertyName = "CarId";
+            this.CarID.HeaderText = "CarID";
+            this.CarID.Name = "CarID";
+            this.CarID.ReadOnly = true;
+            this.CarID.Visible = false;
+            // 
+            // CarMake
+            // 
+            this.CarMake.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CarMake.DataPropertyName = "CarMake";
+            this.CarMake.FillWeight = 50F;
+            this.CarMake.HeaderText = "Car make";
+            this.CarMake.Name = "CarMake";
+            this.CarMake.ReadOnly = true;
+            // 
+            // CarModel
+            // 
+            this.CarModel.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CarModel.DataPropertyName = "CarModel";
+            this.CarModel.FillWeight = 50F;
+            this.CarModel.HeaderText = "Car model";
+            this.CarModel.Name = "CarModel";
+            this.CarModel.ReadOnly = true;
+            // 
+            // CarRegNr
+            // 
+            this.CarRegNr.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.CarRegNr.DataPropertyName = "CarRegNr";
+            this.CarRegNr.HeaderText = "Reg. number";
+            this.CarRegNr.Name = "CarRegNr";
+            this.CarRegNr.ReadOnly = true;
+            this.CarRegNr.Width = 93;
+            // 
+            // btnCarCancel
+            // 
+            this.btnCarCancel.Location = new System.Drawing.Point(185, 324);
+            this.btnCarCancel.Name = "btnCarCancel";
+            this.btnCarCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCarCancel.TabIndex = 24;
+            this.btnCarCancel.Text = "Cancel";
+            this.btnCarCancel.UseVisualStyleBackColor = true;
+            this.btnCarCancel.Click += new System.EventHandler(this.BtnCarCancel_Click);
             // 
             // txtCarRegNr
             // 
@@ -214,15 +310,16 @@
             this.btnCarDelete.TabIndex = 22;
             this.btnCarDelete.Text = "Delete";
             this.btnCarDelete.UseVisualStyleBackColor = true;
+            this.btnCarDelete.Click += new System.EventHandler(this.BtnCarDelete_Click);
             // 
-            // label10
+            // labelCarRegNr
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(20, 267);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(38, 13);
-            this.label10.TabIndex = 20;
-            this.label10.Text = "RegNr";
+            this.labelCarRegNr.AutoSize = true;
+            this.labelCarRegNr.Location = new System.Drawing.Point(20, 267);
+            this.labelCarRegNr.Name = "labelCarRegNr";
+            this.labelCarRegNr.Size = new System.Drawing.Size(38, 13);
+            this.labelCarRegNr.TabIndex = 20;
+            this.labelCarRegNr.Text = "RegNr";
             // 
             // btnCarSave
             // 
@@ -232,15 +329,16 @@
             this.btnCarSave.TabIndex = 19;
             this.btnCarSave.Text = "Save";
             this.btnCarSave.UseVisualStyleBackColor = true;
+            this.btnCarSave.Click += new System.EventHandler(this.BtnCarSave_Click);
             // 
-            // label11
+            // labelCarModel
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(20, 245);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(36, 13);
-            this.label11.TabIndex = 18;
-            this.label11.Text = "Model";
+            this.labelCarModel.AutoSize = true;
+            this.labelCarModel.Location = new System.Drawing.Point(20, 245);
+            this.labelCarModel.Name = "labelCarModel";
+            this.labelCarModel.Size = new System.Drawing.Size(36, 13);
+            this.labelCarModel.TabIndex = 18;
+            this.labelCarModel.Text = "Model";
             // 
             // txtCarModel
             // 
@@ -249,14 +347,14 @@
             this.txtCarModel.Size = new System.Drawing.Size(100, 20);
             this.txtCarModel.TabIndex = 17;
             // 
-            // label12
+            // labelCarMake
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(20, 222);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(34, 13);
-            this.label12.TabIndex = 16;
-            this.label12.Text = "Make";
+            this.labelCarMake.AutoSize = true;
+            this.labelCarMake.Location = new System.Drawing.Point(20, 222);
+            this.labelCarMake.Name = "labelCarMake";
+            this.labelCarMake.Size = new System.Drawing.Size(34, 13);
+            this.labelCarMake.TabIndex = 16;
+            this.labelCarMake.Text = "Make";
             // 
             // txtCarMake
             // 
@@ -265,14 +363,15 @@
             this.txtCarMake.Size = new System.Drawing.Size(100, 20);
             this.txtCarMake.TabIndex = 15;
             // 
-            // btnUsRCancel
+            // btnUsrCancel
             // 
-            this.btnUsRCancel.Location = new System.Drawing.Point(185, 138);
-            this.btnUsRCancel.Name = "btnUsRCancel";
-            this.btnUsRCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnUsRCancel.TabIndex = 14;
-            this.btnUsRCancel.Text = "Cancel";
-            this.btnUsRCancel.UseVisualStyleBackColor = true;
+            this.btnUsrCancel.Location = new System.Drawing.Point(185, 138);
+            this.btnUsrCancel.Name = "btnUsrCancel";
+            this.btnUsrCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnUsrCancel.TabIndex = 14;
+            this.btnUsrCancel.Text = "Cancel";
+            this.btnUsrCancel.UseVisualStyleBackColor = true;
+            this.btnUsrCancel.Click += new System.EventHandler(this.BtnUsrCancel_Click);
             // 
             // txtEmail
             // 
@@ -290,34 +389,34 @@
             this.btnUserDelete.Text = "Delete";
             this.btnUserDelete.UseVisualStyleBackColor = true;
             // 
-            // label8
+            // labelUserConf
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label8.Location = new System.Drawing.Point(20, 13);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(142, 17);
-            this.label8.TabIndex = 11;
-            this.label8.Text = "User configuration";
+            this.labelUserConf.AutoSize = true;
+            this.labelUserConf.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelUserConf.Location = new System.Drawing.Point(20, 13);
+            this.labelUserConf.Name = "labelUserConf";
+            this.labelUserConf.Size = new System.Drawing.Size(142, 17);
+            this.labelUserConf.TabIndex = 11;
+            this.labelUserConf.Text = "User configuration";
             // 
-            // label7
+            // labelEmail
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(20, 81);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(72, 13);
-            this.label7.TabIndex = 10;
-            this.label7.Text = "Email address";
+            this.labelEmail.AutoSize = true;
+            this.labelEmail.Location = new System.Drawing.Point(20, 81);
+            this.labelEmail.Name = "labelEmail";
+            this.labelEmail.Size = new System.Drawing.Size(72, 13);
+            this.labelEmail.TabIndex = 10;
+            this.labelEmail.Text = "Email address";
             // 
-            // label6
+            // labelCarConf
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label6.Location = new System.Drawing.Point(20, 189);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(133, 17);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "Car configuration";
+            this.labelCarConf.AutoSize = true;
+            this.labelCarConf.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelCarConf.Location = new System.Drawing.Point(20, 199);
+            this.labelCarConf.Name = "labelCarConf";
+            this.labelCarConf.Size = new System.Drawing.Size(133, 17);
+            this.labelCarConf.TabIndex = 9;
+            this.labelCarConf.Text = "Car configuration";
             // 
             // btnUserSave
             // 
@@ -328,14 +427,14 @@
             this.btnUserSave.Text = "Save";
             this.btnUserSave.UseVisualStyleBackColor = true;
             // 
-            // label4
+            // labelLastName
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(20, 59);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(56, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Last name";
+            this.labelLastName.AutoSize = true;
+            this.labelLastName.Location = new System.Drawing.Point(20, 59);
+            this.labelLastName.Name = "labelLastName";
+            this.labelLastName.Size = new System.Drawing.Size(56, 13);
+            this.labelLastName.TabIndex = 7;
+            this.labelLastName.Text = "Last name";
             // 
             // txtLastName
             // 
@@ -344,14 +443,14 @@
             this.txtLastName.Size = new System.Drawing.Size(100, 20);
             this.txtLastName.TabIndex = 6;
             // 
-            // label3
+            // labelFirstName
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(20, 36);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "First name";
+            this.labelFirstName.AutoSize = true;
+            this.labelFirstName.Location = new System.Drawing.Point(20, 36);
+            this.labelFirstName.Name = "labelFirstName";
+            this.labelFirstName.Size = new System.Drawing.Size(55, 13);
+            this.labelFirstName.TabIndex = 5;
+            this.labelFirstName.Text = "First name";
             // 
             // txtFirstName
             // 
@@ -383,6 +482,8 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUser)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCar)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -396,31 +497,39 @@
         private System.Windows.Forms.ListBox lstUser;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnRefuellingSave;
+        private System.Windows.Forms.Label labelFirstName;
         private System.Windows.Forms.TextBox txtFirstName;
         private System.Windows.Forms.Button btnUserSave;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label labelLastName;
         private System.Windows.Forms.TextBox txtLastName;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.ListBox lstCar;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnCarCancel;
         private System.Windows.Forms.TextBox txtCarRegNr;
         private System.Windows.Forms.Button btnCarDelete;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label labelCarRegNr;
         private System.Windows.Forms.Button btnCarSave;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label labelCarModel;
         private System.Windows.Forms.TextBox txtCarModel;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label labelCarMake;
         private System.Windows.Forms.TextBox txtCarMake;
-        private System.Windows.Forms.Button btnUsRCancel;
+        private System.Windows.Forms.Button btnUsrCancel;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Button btnUserDelete;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label labelUserConf;
+        private System.Windows.Forms.Label labelEmail;
+        private System.Windows.Forms.Label labelCarConf;
+        private System.Windows.Forms.Label labelUserDB;
+        private System.Windows.Forms.Label labelCarsDB;
+        private System.Windows.Forms.DataGridView dataGridViewUser;
+        private System.Windows.Forms.DataGridView dataGridViewCar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CarID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CarMake;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CarModel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CarRegNr;
     }
 }
 
