@@ -30,7 +30,7 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimeRefuel = new System.Windows.Forms.DateTimePicker();
             this.labelUserRefuel = new System.Windows.Forms.Label();
             this.labelCarRefuel = new System.Windows.Forms.Label();
             this.btnRefuellingSave = new System.Windows.Forms.Button();
@@ -76,6 +76,8 @@
             this.txtCost = new System.Windows.Forms.TextBox();
             this.txtMileage = new System.Windows.Forms.TextBox();
             this.labelMileage = new System.Windows.Forms.Label();
+            this.btnRefuellingCancel = new System.Windows.Forms.Button();
+            this.lblDateOfRefuelling = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -96,13 +98,15 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.lblDateOfRefuelling);
+            this.tabPage1.Controls.Add(this.btnRefuellingCancel);
             this.tabPage1.Controls.Add(this.labelMileage);
             this.tabPage1.Controls.Add(this.txtMileage);
             this.tabPage1.Controls.Add(this.txtCost);
             this.tabPage1.Controls.Add(this.labelCostRefuel);
             this.tabPage1.Controls.Add(this.cbCar);
             this.tabPage1.Controls.Add(this.cbUser);
-            this.tabPage1.Controls.Add(this.dateTimePicker1);
+            this.tabPage1.Controls.Add(this.dateTimeRefuel);
             this.tabPage1.Controls.Add(this.labelUserRefuel);
             this.tabPage1.Controls.Add(this.labelCarRefuel);
             this.tabPage1.Controls.Add(this.btnRefuellingSave);
@@ -116,12 +120,16 @@
             this.tabPage1.Text = "Add refuelling";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // dateTimePicker1
+            // dateTimeRefuel
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(105, 153);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 8;
+            this.dateTimeRefuel.CustomFormat = "yyyy-MM-dd";
+            this.dateTimeRefuel.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimeRefuel.Location = new System.Drawing.Point(105, 153);
+            this.dateTimeRefuel.MaxDate = new System.DateTime(2099, 12, 31, 0, 0, 0, 0);
+            this.dateTimeRefuel.MinDate = new System.DateTime(2019, 1, 1, 0, 0, 0, 0);
+            this.dateTimeRefuel.Name = "dateTimeRefuel";
+            this.dateTimeRefuel.Size = new System.Drawing.Size(100, 20);
+            this.dateTimeRefuel.TabIndex = 8;
             // 
             // labelUserRefuel
             // 
@@ -149,6 +157,7 @@
             this.btnRefuellingSave.TabIndex = 4;
             this.btnRefuellingSave.Text = "Save";
             this.btnRefuellingSave.UseVisualStyleBackColor = true;
+            this.btnRefuellingSave.Click += new System.EventHandler(this.btnRefuellingSave_Click);
             // 
             // labelAmountRefuel
             // 
@@ -554,6 +563,25 @@
             this.labelMileage.TabIndex = 14;
             this.labelMileage.Text = "Mileage";
             // 
+            // btnRefuellingCancel
+            // 
+            this.btnRefuellingCancel.Location = new System.Drawing.Point(108, 179);
+            this.btnRefuellingCancel.Name = "btnRefuellingCancel";
+            this.btnRefuellingCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnRefuellingCancel.TabIndex = 25;
+            this.btnRefuellingCancel.Text = "Cancel";
+            this.btnRefuellingCancel.UseVisualStyleBackColor = true;
+            this.btnRefuellingCancel.Click += new System.EventHandler(this.btnRefuellingCancel_Click);
+            // 
+            // lblDateOfRefuelling
+            // 
+            this.lblDateOfRefuelling.AutoSize = true;
+            this.lblDateOfRefuelling.Location = new System.Drawing.Point(24, 159);
+            this.lblDateOfRefuelling.Name = "lblDateOfRefuelling";
+            this.lblDateOfRefuelling.Size = new System.Drawing.Size(30, 13);
+            this.lblDateOfRefuelling.TabIndex = 26;
+            this.lblDateOfRefuelling.Text = "Date";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -588,7 +616,7 @@
         private System.Windows.Forms.Button btnUserSave;
         private System.Windows.Forms.Label labelLastName;
         private System.Windows.Forms.TextBox txtLastName;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimeRefuel;
         private System.Windows.Forms.Label labelUserRefuel;
         private System.Windows.Forms.Label labelCarRefuel;
         private System.Windows.Forms.Button btnCarCancel;
@@ -624,6 +652,8 @@
         private System.Windows.Forms.Label labelCostRefuel;
         private System.Windows.Forms.Label labelMileage;
         private System.Windows.Forms.TextBox txtMileage;
+        private System.Windows.Forms.Button btnRefuellingCancel;
+        private System.Windows.Forms.Label lblDateOfRefuelling;
     }
 }
 

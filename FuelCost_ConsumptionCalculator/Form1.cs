@@ -15,6 +15,7 @@ namespace FuelCost_ConsumptionCalculator
 
         Car carDBModel = new Car();
         User userDBModel = new User();
+        Refuelling refuelDBModel = new Refuelling();
 
         public Form1()
         {
@@ -56,7 +57,32 @@ namespace FuelCost_ConsumptionCalculator
                 cbCar.ValueMember = "Key";
             }
         }
+        //section refueling
 
+        private void btnRefuellingCancel_Click(object sender, EventArgs e)
+        {
+            ClearFrm();
+        }
+
+        private void btnRefuellingSave_Click(object sender, EventArgs e)
+        {
+            refuelDBModel.Amount = Convert.ToDouble(txtAmount.Text.Trim());
+            refuelDBModel.Cost = Convert.ToDouble(txtCost.Text.Trim());
+            refuelDBModel.Mileage = Convert.ToDouble(txtMileage.Text.Trim());
+            refuelDBModel.fk_CarId = Convert.ToInt32(cbCar.SelectedValue.ToString());
+            refuelDBModel.fk_UserId = Convert.ToInt32(cbUser.SelectedValue.ToString());
+            refuelDBModel.DateRefuel = dateTimeRefuel.Value;
+
+            using (FuelCalcEntities db = new FuelCalcEntities()) {
+                if (refuelDBModel.RefuelingId == 0) {
+                    db.Refuelling.Add(refuelDBModel);
+                }
+                else {
+                    db.Entry(refuelDBModel).State = System.Data.Entity.EntityState.Modified;
+                }
+                db.SaveChanges();
+            }
+        }
         //section for adding users and cars
         //user section
 
@@ -193,7 +219,7 @@ namespace FuelCost_ConsumptionCalculator
         //common methods
 
         void ClearFrm() {
-            txtEmail.Text = txtFirstName.Text = txtLastName.Text = txtAmount.Text = txtCarMake.Text = txtCarModel.Text = txtCarRegNr.Text = "";
+            txtEmail.Text = txtFirstName.Text = txtLastName.Text = txtAmount.Text = txtCost.Text = txtMileage.Text = txtCarMake.Text = txtCarModel.Text = txtCarRegNr.Text = "";
             btnCarDelete.Enabled = false;
             btnUserDelete.Enabled = false;
             carDBModel.CarId = 0;

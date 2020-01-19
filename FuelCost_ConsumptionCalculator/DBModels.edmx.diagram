@@ -5,8 +5,11 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="71b6404a5c1c4011b6cdc883ef12ddc2" Name="Diagram1">
-        <EntityTypeShape EntityType="FuelCalcModel.Car" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FuelCalcModel.Car" Width="1.5" PointX="3.375" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="FuelCalcModel.User" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="FuelCalcModel.Refuelling" Width="1.5" PointX="5.625" PointY="0.75" />
+        <AssociationConnector Association="FuelCalcModel.FK_Refuelling_Car" />
+        <AssociationConnector Association="FuelCalcModel.FK_Refuelling_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

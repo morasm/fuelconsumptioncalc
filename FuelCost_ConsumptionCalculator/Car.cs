@@ -14,9 +14,18 @@ namespace FuelCost_ConsumptionCalculator
     
     public partial class Car
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Car()
+        {
+            this.Refuelling = new HashSet<Refuelling>();
+        }
+    
         public int CarId { get; set; }
         public string CarMake { get; set; }
         public string CarModel { get; set; }
         public string CarRegNr { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Refuelling> Refuelling { get; set; }
     }
 }

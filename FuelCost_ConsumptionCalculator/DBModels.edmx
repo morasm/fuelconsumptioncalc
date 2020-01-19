@@ -14,6 +14,18 @@
           <Property Name="CarModel" Type="varchar" MaxLength="50" />
           <Property Name="CarRegNr" Type="varchar" MaxLength="10" />
         </EntityType>
+        <EntityType Name="Refuelling">
+          <Key>
+            <PropertyRef Name="RefuelingId" />
+          </Key>
+          <Property Name="RefuelingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Amount" Type="float" Nullable="false" />
+          <Property Name="Cost" Type="float" Nullable="false" />
+          <Property Name="Mileage" Type="float" Nullable="false" />
+          <Property Name="DateRefuel" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="fk_UserId" Type="int" Nullable="false" />
+          <Property Name="fk_CarId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="UserId" />
@@ -23,9 +35,42 @@
           <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Refuelling_Car">
+          <End Role="Car" Type="Self.Car" Multiplicity="1" />
+          <End Role="Refuelling" Type="Self.Refuelling" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car">
+              <PropertyRef Name="CarId" />
+            </Principal>
+            <Dependent Role="Refuelling">
+              <PropertyRef Name="fk_CarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Refuelling_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Refuelling" Type="Self.Refuelling" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Refuelling">
+              <PropertyRef Name="fk_UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="FuelCalcModelStoreContainer">
           <EntitySet Name="Car" EntityType="Self.Car" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Refuelling" EntityType="Self.Refuelling" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Refuelling_Car" Association="Self.FK_Refuelling_Car">
+            <End Role="Car" EntitySet="Car" />
+            <End Role="Refuelling" EntitySet="Refuelling" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Refuelling_User" Association="Self.FK_Refuelling_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Refuelling" EntitySet="Refuelling" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -39,10 +84,20 @@
           <Property Name="CarMake" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CarModel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CarRegNr" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Refuelling" Relationship="FuelCalcModel.FK_Refuelling_Car" FromRole="Car" ToRole="Refuelling" />
         </EntityType>
         <EntityContainer Name="FuelCalcEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Car" EntityType="Self.Car" />
           <EntitySet Name="User" EntityType="FuelCalcModel.User" />
+          <EntitySet Name="Refuelling" EntityType="FuelCalcModel.Refuelling" />
+          <AssociationSet Name="FK_Refuelling_Car" Association="FuelCalcModel.FK_Refuelling_Car">
+            <End Role="Car" EntitySet="Car" />
+            <End Role="Refuelling" EntitySet="Refuelling" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Refuelling_User" Association="FuelCalcModel.FK_Refuelling_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Refuelling" EntitySet="Refuelling" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="User">
           <Key>
@@ -52,7 +107,46 @@
           <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Refuelling" Relationship="FuelCalcModel.FK_Refuelling_User" FromRole="User" ToRole="Refuelling" />
         </EntityType>
+        <EntityType Name="Refuelling">
+          <Key>
+            <PropertyRef Name="RefuelingId" />
+          </Key>
+          <Property Name="RefuelingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Amount" Type="Double" Nullable="false" />
+          <Property Name="Cost" Type="Double" Nullable="false" />
+          <Property Name="Mileage" Type="Double" Nullable="false" />
+          <Property Name="DateRefuel" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="fk_UserId" Type="Int32" Nullable="false" />
+          <Property Name="fk_CarId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Car" Relationship="FuelCalcModel.FK_Refuelling_Car" FromRole="Refuelling" ToRole="Car" />
+          <NavigationProperty Name="User" Relationship="FuelCalcModel.FK_Refuelling_User" FromRole="Refuelling" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Refuelling_Car">
+          <End Type="FuelCalcModel.Car" Role="Car" Multiplicity="1" />
+          <End Type="FuelCalcModel.Refuelling" Role="Refuelling" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car">
+              <PropertyRef Name="CarId" />
+            </Principal>
+            <Dependent Role="Refuelling">
+              <PropertyRef Name="fk_CarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Refuelling_User">
+          <End Type="FuelCalcModel.User" Role="User" Multiplicity="1" />
+          <End Type="FuelCalcModel.Refuelling" Role="Refuelling" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Refuelling">
+              <PropertyRef Name="fk_UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -76,6 +170,19 @@
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Refuelling">
+            <EntityTypeMapping TypeName="FuelCalcModel.Refuelling">
+              <MappingFragment StoreEntitySet="Refuelling">
+                <ScalarProperty Name="fk_CarId" ColumnName="fk_CarId" />
+                <ScalarProperty Name="fk_UserId" ColumnName="fk_UserId" />
+                <ScalarProperty Name="DateRefuel" ColumnName="DateRefuel" />
+                <ScalarProperty Name="Mileage" ColumnName="Mileage" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="RefuelingId" ColumnName="RefuelingId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
