@@ -26,10 +26,39 @@ namespace FuelCost_ConsumptionCalculator
             ClearFrm();
             PopulateGridViewUser();
             PopulateGridViewCar();
+            FillDropdownUserList();
+            FillDropdownCarList();
+        }
+        //section for adding refuelling
 
+        private void FillDropdownUserList() {
+            using (FuelCalcEntities db = new FuelCalcEntities()) {
+                cbUser.DataSource = db.User.ToList<User>();
+                cbUser.DisplayMember = "LastName";
+                cbUser.ValueMember = "UserId";
+            }
         }
 
-        //usr section
+        private void FillDropdownCarList()
+        {
+            using (FuelCalcEntities db = new FuelCalcEntities())
+            {
+                List<Car> cars = db.Car.ToList<Car>();
+                var cbDict = new Dictionary<int, string>();
+                foreach (var car in cars) {
+                    cbDict.Add(car.CarId, 
+                        car.CarMake.ToString() +
+                        " " + car.CarModel.ToString() + 
+                        " " + car.CarRegNr.ToString());
+                }
+                cbCar.DataSource = new BindingSource(cbDict, null);
+                cbCar.DisplayMember = "Value";
+                cbCar.ValueMember = "Key";
+            }
+        }
+
+        //section for adding users and cars
+        //user section
 
         private void BtnUsrCancel_Click(object sender, EventArgs e)
         {

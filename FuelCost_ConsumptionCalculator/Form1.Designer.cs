@@ -31,17 +31,19 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.lstCar = new System.Windows.Forms.ListBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelUserRefuel = new System.Windows.Forms.Label();
+            this.labelCarRefuel = new System.Windows.Forms.Label();
             this.btnRefuellingSave = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
+            this.labelAmountRefuel = new System.Windows.Forms.Label();
             this.txtAmount = new System.Windows.Forms.TextBox();
-            this.lstUser = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.labelUserDB = new System.Windows.Forms.Label();
             this.labelCarsDB = new System.Windows.Forms.Label();
             this.dataGridViewUser = new System.Windows.Forms.DataGridView();
+            this.UserId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewCar = new System.Windows.Forms.DataGridView();
             this.CarID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CarMake = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -68,10 +70,12 @@
             this.labelFirstName = new System.Windows.Forms.Label();
             this.txtFirstName = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.UserId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cbUser = new System.Windows.Forms.ComboBox();
+            this.cbCar = new System.Windows.Forms.ComboBox();
+            this.labelCostRefuel = new System.Windows.Forms.Label();
+            this.txtCost = new System.Windows.Forms.TextBox();
+            this.txtMileage = new System.Windows.Forms.TextBox();
+            this.labelMileage = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -92,14 +96,18 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.labelMileage);
+            this.tabPage1.Controls.Add(this.txtMileage);
+            this.tabPage1.Controls.Add(this.txtCost);
+            this.tabPage1.Controls.Add(this.labelCostRefuel);
+            this.tabPage1.Controls.Add(this.cbCar);
+            this.tabPage1.Controls.Add(this.cbUser);
             this.tabPage1.Controls.Add(this.dateTimePicker1);
-            this.tabPage1.Controls.Add(this.lstCar);
-            this.tabPage1.Controls.Add(this.label5);
-            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Controls.Add(this.labelUserRefuel);
+            this.tabPage1.Controls.Add(this.labelCarRefuel);
             this.tabPage1.Controls.Add(this.btnRefuellingSave);
-            this.tabPage1.Controls.Add(this.label2);
+            this.tabPage1.Controls.Add(this.labelAmountRefuel);
             this.tabPage1.Controls.Add(this.txtAmount);
-            this.tabPage1.Controls.Add(this.lstUser);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -110,54 +118,46 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(105, 112);
+            this.dateTimePicker1.Location = new System.Drawing.Point(105, 153);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 8;
             // 
-            // lstCar
+            // labelUserRefuel
             // 
-            this.lstCar.FormattingEnabled = true;
-            this.lstCar.Location = new System.Drawing.Point(105, 49);
-            this.lstCar.Name = "lstCar";
-            this.lstCar.Size = new System.Drawing.Size(120, 17);
-            this.lstCar.TabIndex = 7;
+            this.labelUserRefuel.AutoSize = true;
+            this.labelUserRefuel.Location = new System.Drawing.Point(24, 27);
+            this.labelUserRefuel.Name = "labelUserRefuel";
+            this.labelUserRefuel.Size = new System.Drawing.Size(29, 13);
+            this.labelUserRefuel.TabIndex = 6;
+            this.labelUserRefuel.Text = "User";
             // 
-            // label5
+            // labelCarRefuel
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(24, 27);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(29, 13);
-            this.label5.TabIndex = 6;
-            this.label5.Text = "User";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(24, 53);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(23, 13);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Car";
+            this.labelCarRefuel.AutoSize = true;
+            this.labelCarRefuel.Location = new System.Drawing.Point(24, 53);
+            this.labelCarRefuel.Name = "labelCarRefuel";
+            this.labelCarRefuel.Size = new System.Drawing.Size(23, 13);
+            this.labelCarRefuel.TabIndex = 5;
+            this.labelCarRefuel.Text = "Car";
             // 
             // btnRefuellingSave
             // 
-            this.btnRefuellingSave.Location = new System.Drawing.Point(27, 141);
+            this.btnRefuellingSave.Location = new System.Drawing.Point(27, 179);
             this.btnRefuellingSave.Name = "btnRefuellingSave";
             this.btnRefuellingSave.Size = new System.Drawing.Size(75, 23);
             this.btnRefuellingSave.TabIndex = 4;
             this.btnRefuellingSave.Text = "Save";
             this.btnRefuellingSave.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // labelAmountRefuel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(24, 78);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Amount of fuel";
+            this.labelAmountRefuel.AutoSize = true;
+            this.labelAmountRefuel.Location = new System.Drawing.Point(24, 78);
+            this.labelAmountRefuel.Name = "labelAmountRefuel";
+            this.labelAmountRefuel.Size = new System.Drawing.Size(75, 13);
+            this.labelAmountRefuel.TabIndex = 3;
+            this.labelAmountRefuel.Text = "Amount of fuel";
             // 
             // txtAmount
             // 
@@ -165,14 +165,6 @@
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Size = new System.Drawing.Size(100, 20);
             this.txtAmount.TabIndex = 2;
-            // 
-            // lstUser
-            // 
-            this.lstUser.FormattingEnabled = true;
-            this.lstUser.Location = new System.Drawing.Point(105, 23);
-            this.lstUser.Name = "lstUser";
-            this.lstUser.Size = new System.Drawing.Size(120, 17);
-            this.lstUser.TabIndex = 1;
             // 
             // tabPage2
             // 
@@ -244,6 +236,36 @@
             this.dataGridViewUser.Size = new System.Drawing.Size(438, 128);
             this.dataGridViewUser.TabIndex = 26;
             this.dataGridViewUser.DoubleClick += new System.EventHandler(this.DataGridViewUser_DoubleClick);
+            // 
+            // UserId
+            // 
+            this.UserId.DataPropertyName = "UserId";
+            this.UserId.HeaderText = "UserId";
+            this.UserId.Name = "UserId";
+            this.UserId.ReadOnly = true;
+            this.UserId.Visible = false;
+            // 
+            // FirstName
+            // 
+            this.FirstName.DataPropertyName = "FirstName";
+            this.FirstName.HeaderText = "First Name";
+            this.FirstName.Name = "FirstName";
+            this.FirstName.ReadOnly = true;
+            // 
+            // LastName
+            // 
+            this.LastName.DataPropertyName = "LastName";
+            this.LastName.HeaderText = "Last Name";
+            this.LastName.Name = "LastName";
+            this.LastName.ReadOnly = true;
+            // 
+            // Email
+            // 
+            this.Email.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Email.DataPropertyName = "Email";
+            this.Email.HeaderText = "Email";
+            this.Email.Name = "Email";
+            this.Email.ReadOnly = true;
             // 
             // dataGridViewCar
             // 
@@ -482,35 +504,55 @@
             this.tabPage3.Text = "Reports";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // UserId
+            // cbUser
             // 
-            this.UserId.DataPropertyName = "UserId";
-            this.UserId.HeaderText = "UserId";
-            this.UserId.Name = "UserId";
-            this.UserId.ReadOnly = true;
-            this.UserId.Visible = false;
+            this.cbUser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbUser.FormattingEnabled = true;
+            this.cbUser.Location = new System.Drawing.Point(105, 19);
+            this.cbUser.Name = "cbUser";
+            this.cbUser.Size = new System.Drawing.Size(200, 21);
+            this.cbUser.TabIndex = 9;
             // 
-            // FirstName
+            // cbCar
             // 
-            this.FirstName.DataPropertyName = "FirstName";
-            this.FirstName.HeaderText = "First Name";
-            this.FirstName.Name = "FirstName";
-            this.FirstName.ReadOnly = true;
+            this.cbCar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCar.FormattingEnabled = true;
+            this.cbCar.Location = new System.Drawing.Point(105, 45);
+            this.cbCar.Name = "cbCar";
+            this.cbCar.Size = new System.Drawing.Size(200, 21);
+            this.cbCar.TabIndex = 10;
             // 
-            // LastName
+            // labelCostRefuel
             // 
-            this.LastName.DataPropertyName = "LastName";
-            this.LastName.HeaderText = "Last Name";
-            this.LastName.Name = "LastName";
-            this.LastName.ReadOnly = true;
+            this.labelCostRefuel.AutoSize = true;
+            this.labelCostRefuel.Location = new System.Drawing.Point(24, 104);
+            this.labelCostRefuel.Name = "labelCostRefuel";
+            this.labelCostRefuel.Size = new System.Drawing.Size(28, 13);
+            this.labelCostRefuel.TabIndex = 11;
+            this.labelCostRefuel.Text = "Cost";
             // 
-            // Email
+            // txtCost
             // 
-            this.Email.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Email.DataPropertyName = "Email";
-            this.Email.HeaderText = "Email";
-            this.Email.Name = "Email";
-            this.Email.ReadOnly = true;
+            this.txtCost.Location = new System.Drawing.Point(105, 101);
+            this.txtCost.Name = "txtCost";
+            this.txtCost.Size = new System.Drawing.Size(100, 20);
+            this.txtCost.TabIndex = 12;
+            // 
+            // txtMileage
+            // 
+            this.txtMileage.Location = new System.Drawing.Point(105, 127);
+            this.txtMileage.Name = "txtMileage";
+            this.txtMileage.Size = new System.Drawing.Size(100, 20);
+            this.txtMileage.TabIndex = 13;
+            // 
+            // labelMileage
+            // 
+            this.labelMileage.AutoSize = true;
+            this.labelMileage.Location = new System.Drawing.Point(24, 130);
+            this.labelMileage.Name = "labelMileage";
+            this.labelMileage.Size = new System.Drawing.Size(44, 13);
+            this.labelMileage.TabIndex = 14;
+            this.labelMileage.Text = "Mileage";
             // 
             // Form1
             // 
@@ -536,9 +578,8 @@
 
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelAmountRefuel;
         private System.Windows.Forms.TextBox txtAmount;
-        private System.Windows.Forms.ListBox lstUser;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Button btnRefuellingSave;
@@ -548,9 +589,8 @@
         private System.Windows.Forms.Label labelLastName;
         private System.Windows.Forms.TextBox txtLastName;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.ListBox lstCar;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelUserRefuel;
+        private System.Windows.Forms.Label labelCarRefuel;
         private System.Windows.Forms.Button btnCarCancel;
         private System.Windows.Forms.TextBox txtCarRegNr;
         private System.Windows.Forms.Button btnCarDelete;
@@ -578,6 +618,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn FirstName;
         private System.Windows.Forms.DataGridViewTextBoxColumn LastName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Email;
+        private System.Windows.Forms.ComboBox cbCar;
+        private System.Windows.Forms.ComboBox cbUser;
+        private System.Windows.Forms.TextBox txtCost;
+        private System.Windows.Forms.Label labelCostRefuel;
+        private System.Windows.Forms.Label labelMileage;
+        private System.Windows.Forms.TextBox txtMileage;
     }
 }
 
