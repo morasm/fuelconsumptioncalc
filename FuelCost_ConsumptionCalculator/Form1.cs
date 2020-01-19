@@ -14,6 +14,7 @@ namespace FuelCost_ConsumptionCalculator
     {
 
         Car carDBModel = new Car();
+        User userDBModel = new User();
 
         public Form1()
         {
@@ -23,7 +24,9 @@ namespace FuelCost_ConsumptionCalculator
         private void Form1_Load(object sender, EventArgs e)
         {
             ClearFrm();
+            PopulateGridViewUser();
             PopulateGridViewCar();
+
         }
 
         //usr section
@@ -31,6 +34,64 @@ namespace FuelCost_ConsumptionCalculator
         private void BtnUsrCancel_Click(object sender, EventArgs e)
         {
             ClearFrm();
+        }
+
+        private void BtnUserSave_Click(object sender, EventArgs e)
+        {
+            userDBModel.FirstName = txtFirstName.Text.Trim();
+            userDBModel.LastName = txtLastName.Text.Trim();
+            userDBModel.Email = txtEmail.Text.Trim();
+
+            using (FuelCalcEntities db = new FuelCalcEntities()) {
+                if (userDBModel.UserId == 0) {
+                    db.User.Add(userDBModel);
+                }
+                else {
+                    db.Entry(userDBModel).State = System.Data.Entity.EntityState.Modified;
+                }
+                db.SaveChanges();
+            }
+            ClearFrm();
+            PopulateGridViewUser();
+            MessageBox.Show("Submitted successfully!");
+        }
+
+        void PopulateGridViewUser() {
+            using (FuelCalcEntities db = new FuelCalcEntities()) {
+                dataGridViewUser.DataSource = db.User.ToList<User>();
+            }
+        }
+
+        private void DataGridViewUser_DoubleClick(object sender, EventArgs e)
+        {
+            if (dataGridViewUser.CurrentCell.RowIndex != -1) {
+                userDBModel.UserId = Convert.ToInt32(dataGridViewUser.CurrentRow.Cells["UserId"].Value);
+                using (FuelCalcEntities db = new FuelCalcEntities()) {
+                    userDBModel = db.User.Where(x => x.UserId == userDBModel.UserId).FirstOrDefault();
+                    txtFirstName.Text = userDBModel.FirstName;
+                    txtLastName.Text = userDBModel.LastName;
+                    txtEmail.Text = userDBModel.Email;
+                }
+                btnUserDelete.Enabled = true;
+                btnUserSave.Text = "Update";
+            }
+        }
+
+        private void BtnUserDelete_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure to delete this record?", "Car delete operation", MessageBoxButtons.YesNo) == DialogResult.Yes) {
+                using (FuelCalcEntities db = new FuelCalcEntities()) {
+                    var entry = db.Entry(userDBModel);
+                    if (entry.State == System.Data.Entity.EntityState.Detached) {
+                        db.User.Attach(userDBModel);
+                    }
+                    db.User.Remove(userDBModel);
+                    db.SaveChanges();
+                    PopulateGridViewUser();
+                    ClearFrm();
+                    MessageBox.Show("Deleted successfully!");
+                }
+            }
         }
 
         //car section
@@ -49,11 +110,12 @@ namespace FuelCost_ConsumptionCalculator
             using (FuelCalcEntities db = new FuelCalcEntities()) {
                 if (carDBModel.CarId == 0) { //table empty, adding row
                     db.Car.Add(carDBModel);
+
                 }
                 else { //update row
                     db.Entry(carDBModel).State = System.Data.Entity.EntityState.Modified;
-                    db.SaveChanges();
                 }
+                db.SaveChanges();
             }
             ClearFrm();
             PopulateGridViewCar();
@@ -105,10 +167,11 @@ namespace FuelCost_ConsumptionCalculator
             txtEmail.Text = txtFirstName.Text = txtLastName.Text = txtAmount.Text = txtCarMake.Text = txtCarModel.Text = txtCarRegNr.Text = "";
             btnCarDelete.Enabled = false;
             btnUserDelete.Enabled = false;
+            carDBModel.CarId = 0;
+            userDBModel.UserId = 0;
             btnUserSave.Text = "Save";
             btnCarSave.Text = "Save";
         }
-
 
     }
 }

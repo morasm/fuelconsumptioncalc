@@ -68,6 +68,10 @@
             this.labelFirstName = new System.Windows.Forms.Label();
             this.txtFirstName = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.UserId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -226,12 +230,20 @@
             // 
             // dataGridViewUser
             // 
+            this.dataGridViewUser.AllowUserToDeleteRows = false;
             this.dataGridViewUser.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dataGridViewUser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewUser.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.UserId,
+            this.FirstName,
+            this.LastName,
+            this.Email});
             this.dataGridViewUser.Location = new System.Drawing.Point(308, 33);
             this.dataGridViewUser.Name = "dataGridViewUser";
+            this.dataGridViewUser.ReadOnly = true;
             this.dataGridViewUser.Size = new System.Drawing.Size(438, 128);
             this.dataGridViewUser.TabIndex = 26;
+            this.dataGridViewUser.DoubleClick += new System.EventHandler(this.DataGridViewUser_DoubleClick);
             // 
             // dataGridViewCar
             // 
@@ -388,6 +400,7 @@
             this.btnUserDelete.TabIndex = 12;
             this.btnUserDelete.Text = "Delete";
             this.btnUserDelete.UseVisualStyleBackColor = true;
+            this.btnUserDelete.Click += new System.EventHandler(this.BtnUserDelete_Click);
             // 
             // labelUserConf
             // 
@@ -426,6 +439,7 @@
             this.btnUserSave.TabIndex = 8;
             this.btnUserSave.Text = "Save";
             this.btnUserSave.UseVisualStyleBackColor = true;
+            this.btnUserSave.Click += new System.EventHandler(this.BtnUserSave_Click);
             // 
             // labelLastName
             // 
@@ -467,6 +481,36 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Reports";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // UserId
+            // 
+            this.UserId.DataPropertyName = "UserId";
+            this.UserId.HeaderText = "UserId";
+            this.UserId.Name = "UserId";
+            this.UserId.ReadOnly = true;
+            this.UserId.Visible = false;
+            // 
+            // FirstName
+            // 
+            this.FirstName.DataPropertyName = "FirstName";
+            this.FirstName.HeaderText = "First Name";
+            this.FirstName.Name = "FirstName";
+            this.FirstName.ReadOnly = true;
+            // 
+            // LastName
+            // 
+            this.LastName.DataPropertyName = "LastName";
+            this.LastName.HeaderText = "Last Name";
+            this.LastName.Name = "LastName";
+            this.LastName.ReadOnly = true;
+            // 
+            // Email
+            // 
+            this.Email.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Email.DataPropertyName = "Email";
+            this.Email.HeaderText = "Email";
+            this.Email.Name = "Email";
+            this.Email.ReadOnly = true;
             // 
             // Form1
             // 
@@ -530,6 +574,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CarMake;
         private System.Windows.Forms.DataGridViewTextBoxColumn CarModel;
         private System.Windows.Forms.DataGridViewTextBoxColumn CarRegNr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UserId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FirstName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LastName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Email;
     }
 }
 
