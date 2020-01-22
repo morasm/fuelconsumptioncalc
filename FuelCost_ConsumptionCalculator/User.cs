@@ -18,6 +18,7 @@ namespace FuelCost_ConsumptionCalculator
         public User()
         {
             this.Refuelling = new HashSet<Refuelling>();
+            this.Travel = new HashSet<Travel>();
         }
     
         public int UserId { get; set; }
@@ -27,5 +28,7 @@ namespace FuelCost_ConsumptionCalculator
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Refuelling> Refuelling { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Travel> Travel { get; set; }
     }
 }

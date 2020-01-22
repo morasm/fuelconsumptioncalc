@@ -26,6 +26,20 @@
           <Property Name="fk_UserId" Type="int" Nullable="false" />
           <Property Name="fk_CarId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Travel">
+          <Key>
+            <PropertyRef Name="TravelId" />
+          </Key>
+          <Property Name="TravelId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TravelStart" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="TravelTarget" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="TravelPurpose" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="fk_UserId" Type="int" Nullable="false" />
+          <Property Name="fk_CarId" Type="int" Nullable="false" />
+          <Property Name="TravelStartMileage" Type="float" Nullable="false" />
+          <Property Name="TravelTargetMileage" Type="float" Nullable="false" />
+          <Property Name="DateTravel" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="UserId" />
@@ -59,9 +73,34 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Travel_Car">
+          <End Role="Car" Type="Self.Car" Multiplicity="1" />
+          <End Role="Travel" Type="Self.Travel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car">
+              <PropertyRef Name="CarId" />
+            </Principal>
+            <Dependent Role="Travel">
+              <PropertyRef Name="fk_CarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Travel_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Travel" Type="Self.Travel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Travel">
+              <PropertyRef Name="fk_UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="FuelCalcModelStoreContainer">
           <EntitySet Name="Car" EntityType="Self.Car" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Refuelling" EntityType="Self.Refuelling" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Travel" EntityType="Self.Travel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Refuelling_Car" Association="Self.FK_Refuelling_Car">
             <End Role="Car" EntitySet="Car" />
@@ -70,6 +109,14 @@
           <AssociationSet Name="FK_Refuelling_User" Association="Self.FK_Refuelling_User">
             <End Role="User" EntitySet="User" />
             <End Role="Refuelling" EntitySet="Refuelling" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Travel_Car" Association="Self.FK_Travel_Car">
+            <End Role="Car" EntitySet="Car" />
+            <End Role="Travel" EntitySet="Travel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Travel_User" Association="Self.FK_Travel_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Travel" EntitySet="Travel" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -85,6 +132,7 @@
           <Property Name="CarModel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CarRegNr" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Refuelling" Relationship="FuelCalcModel.FK_Refuelling_Car" FromRole="Car" ToRole="Refuelling" />
+          <NavigationProperty Name="Travel" Relationship="FuelCalcModel.FK_Travel_Car" FromRole="Car" ToRole="Travel" />
         </EntityType>
         <EntityContainer Name="FuelCalcEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Car" EntityType="Self.Car" />
@@ -98,6 +146,15 @@
             <End Role="User" EntitySet="User" />
             <End Role="Refuelling" EntitySet="Refuelling" />
           </AssociationSet>
+          <EntitySet Name="Travel" EntityType="FuelCalcModel.Travel" />
+          <AssociationSet Name="FK_Travel_Car" Association="FuelCalcModel.FK_Travel_Car">
+            <End Role="Car" EntitySet="Car" />
+            <End Role="Travel" EntitySet="Travel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Travel_User" Association="FuelCalcModel.FK_Travel_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Travel" EntitySet="Travel" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="User">
           <Key>
@@ -108,6 +165,7 @@
           <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Refuelling" Relationship="FuelCalcModel.FK_Refuelling_User" FromRole="User" ToRole="Refuelling" />
+          <NavigationProperty Name="Travel" Relationship="FuelCalcModel.FK_Travel_User" FromRole="User" ToRole="Travel" />
         </EntityType>
         <EntityType Name="Refuelling">
           <Key>
@@ -143,6 +201,46 @@
               <PropertyRef Name="UserId" />
             </Principal>
             <Dependent Role="Refuelling">
+              <PropertyRef Name="fk_UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Travel">
+          <Key>
+            <PropertyRef Name="TravelId" />
+          </Key>
+          <Property Name="TravelId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TravelStart" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="TravelTarget" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="TravelPurpose" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="fk_UserId" Type="Int32" Nullable="false" />
+          <Property Name="fk_CarId" Type="Int32" Nullable="false" />
+          <Property Name="TravelStartMileage" Type="Double" Nullable="false" />
+          <Property Name="TravelTargetMileage" Type="Double" Nullable="false" />
+          <Property Name="DateTravel" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Car" Relationship="FuelCalcModel.FK_Travel_Car" FromRole="Travel" ToRole="Car" />
+          <NavigationProperty Name="User" Relationship="FuelCalcModel.FK_Travel_User" FromRole="Travel" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Travel_Car">
+          <End Type="FuelCalcModel.Car" Role="Car" Multiplicity="1" />
+          <End Type="FuelCalcModel.Travel" Role="Travel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car">
+              <PropertyRef Name="CarId" />
+            </Principal>
+            <Dependent Role="Travel">
+              <PropertyRef Name="fk_CarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Travel_User">
+          <End Type="FuelCalcModel.User" Role="User" Multiplicity="1" />
+          <End Type="FuelCalcModel.Travel" Role="Travel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Travel">
               <PropertyRef Name="fk_UserId" />
             </Dependent>
           </ReferentialConstraint>
@@ -186,6 +284,21 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Travel">
+            <EntityTypeMapping TypeName="FuelCalcModel.Travel">
+              <MappingFragment StoreEntitySet="Travel">
+                <ScalarProperty Name="DateTravel" ColumnName="DateTravel" />
+                <ScalarProperty Name="TravelTargetMileage" ColumnName="TravelTargetMileage" />
+                <ScalarProperty Name="TravelStartMileage" ColumnName="TravelStartMileage" />
+                <ScalarProperty Name="fk_CarId" ColumnName="fk_CarId" />
+                <ScalarProperty Name="fk_UserId" ColumnName="fk_UserId" />
+                <ScalarProperty Name="TravelPurpose" ColumnName="TravelPurpose" />
+                <ScalarProperty Name="TravelTarget" ColumnName="TravelTarget" />
+                <ScalarProperty Name="TravelStart" ColumnName="TravelStart" />
+                <ScalarProperty Name="TravelId" ColumnName="TravelId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -201,7 +314,7 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>

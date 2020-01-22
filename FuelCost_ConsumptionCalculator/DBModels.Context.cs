@@ -28,5 +28,6 @@ namespace FuelCost_ConsumptionCalculator
         public virtual DbSet<Car> Car { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<Refuelling> Refuelling { get; set; }
+        public virtual DbSet<Travel> Travel { get; set; }
     }
 }

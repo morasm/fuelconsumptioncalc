@@ -16,6 +16,7 @@ namespace FuelCost_ConsumptionCalculator
         Car carDBModel = new Car();
         User userDBModel = new User();
         Refuelling refuelDBModel = new Refuelling();
+        Travel travelDBModel = new Travel();
 
         public Form1()
         {
@@ -37,6 +38,10 @@ namespace FuelCost_ConsumptionCalculator
                 cbUser.DataSource = db.User.ToList<User>();
                 cbUser.DisplayMember = "LastName";
                 cbUser.ValueMember = "UserId";
+
+                cbUserTravel.DataSource = db.User.ToList<User>();
+                cbUserTravel.DisplayMember = "LastName";
+                cbUserTravel.ValueMember = "UserId";
             }
         }
 
@@ -55,16 +60,20 @@ namespace FuelCost_ConsumptionCalculator
                 cbCar.DataSource = new BindingSource(cbDict, null);
                 cbCar.DisplayMember = "Value";
                 cbCar.ValueMember = "Key";
+
+                cbCarTravel.DataSource = new BindingSource(cbDict, null);
+                cbCarTravel.DisplayMember = "Value";
+                cbCarTravel.ValueMember = "Key";
             }
         }
         //section refueling
 
-        private void btnRefuellingCancel_Click(object sender, EventArgs e)
+        private void BtnRefuellingCancel_Click(object sender, EventArgs e)
         {
             ClearFrm();
         }
 
-        private void btnRefuellingSave_Click(object sender, EventArgs e)
+        private void BtnRefuellingSave_Click(object sender, EventArgs e)
         {
             refuelDBModel.Amount = Convert.ToDouble(txtAmount.Text.Trim());
             refuelDBModel.Cost = Convert.ToDouble(txtCost.Text.Trim());
@@ -83,6 +92,51 @@ namespace FuelCost_ConsumptionCalculator
                 db.SaveChanges();
             }
         }
+
+        //section add travel
+
+        private void BtnCancelTravel_Click(object sender, EventArgs e)
+        {
+            ClearFrm();
+        }
+
+
+        private void BtnSaveTravel_Click(object sender, EventArgs e)
+        {
+            travelDBModel.fk_CarId = Convert.ToInt32(cbCarTravel.SelectedValue.ToString());
+            travelDBModel.fk_UserId = Convert.ToInt32(cbUserTravel.SelectedValue.ToString());
+            travelDBModel.TravelStart = txtTravelStart.Text.Trim();
+            travelDBModel.TravelTarget = txtTravelTarget.Text.Trim();
+            travelDBModel.TravelPurpose = txtTravelPurpose.Text.Trim();
+            travelDBModel.TravelStartMileage = Convert.ToDouble(txtTravelStartMileage.Text.Trim());
+            travelDBModel.TravelTargetMileage = Convert.ToDouble(txtTravelTargetMileage.Text.Trim());
+            travelDBModel.DateTravel = dateTimePickerTravel.Value;
+
+            if (travelDBModel.TravelTargetMileage > travelDBModel.TravelStartMileage)
+            {
+                using (FuelCalcEntities db = new FuelCalcEntities())
+                {
+                    if (travelDBModel.TravelId == 0)
+                    {
+                        db.Travel.Add(travelDBModel);
+                    }
+                    else
+                    {
+                        db.Entry(travelDBModel).State = System.Data.Entity.EntityState.Modified;
+                    }
+                    db.SaveChanges();
+                }
+                txtTravelTargetMileage.BackColor = Color.Red;
+                ClearFrm();
+                MessageBox.Show("Submitted successfully!");
+            }
+            else {
+                MessageBox.Show("Final mileage less than the initial one!");
+                txtTravelTargetMileage.BackColor = Color.Red;
+                txtTravelTargetMileage.Text = "";
+            }
+        }
+        //section config app
         //section for adding users and cars
         //user section
 
@@ -219,7 +273,9 @@ namespace FuelCost_ConsumptionCalculator
         //common methods
 
         void ClearFrm() {
-            txtEmail.Text = txtFirstName.Text = txtLastName.Text = txtAmount.Text = txtCost.Text = txtMileage.Text = txtCarMake.Text = txtCarModel.Text = txtCarRegNr.Text = "";
+            //txtEmail.Text = txtFirstName.Text = txtLastName.Text = txtAmount.Text = txtCost.Text = txtMileage.Text = txtCarMake.Text = txtCarModel.Text = txtCarRegNr.Text = "";
+            ClearForm();
+
             btnCarDelete.Enabled = false;
             btnUserDelete.Enabled = false;
             carDBModel.CarId = 0;
@@ -228,5 +284,16 @@ namespace FuelCost_ConsumptionCalculator
             btnCarSave.Text = "Save";
         }
 
+        public void ClearForm()
+        {
+            foreach (TabPage tab in tabControl1.TabPages)
+            {
+                foreach (Control ctrl in tab.Controls)
+                if (ctrl is TextBox)
+                {
+                    ctrl.Text = "";
+                }
+            }
+        }
     }
 }

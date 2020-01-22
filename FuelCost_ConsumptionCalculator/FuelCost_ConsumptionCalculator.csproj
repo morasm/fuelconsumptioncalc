@@ -84,6 +84,9 @@
     <Compile Include="Refuelling.cs">
       <DependentUpon>DBModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="Travel.cs">
+      <DependentUpon>DBModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="User.cs">
       <DependentUpon>DBModels.tt</DependentUpon>
     </Compile>
