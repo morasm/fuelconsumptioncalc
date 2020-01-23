@@ -272,9 +272,11 @@ namespace FuelCost_ConsumptionCalculator
         }
         //common methods
 
-        void ClearFrm() {
+        void ClearFrm()
+        {
+            FormCleaner fc = new FormCleaner();
             //txtEmail.Text = txtFirstName.Text = txtLastName.Text = txtAmount.Text = txtCost.Text = txtMileage.Text = txtCarMake.Text = txtCarModel.Text = txtCarRegNr.Text = "";
-            ClearForm();
+            fc.ClearForm(tabControl1);
 
             btnCarDelete.Enabled = false;
             btnUserDelete.Enabled = false;
@@ -282,18 +284,6 @@ namespace FuelCost_ConsumptionCalculator
             userDBModel.UserId = 0;
             btnUserSave.Text = "Save";
             btnCarSave.Text = "Save";
-        }
-
-        public void ClearForm()
-        {
-            foreach (TabPage tab in tabControl1.TabPages)
-            {
-                foreach (Control ctrl in tab.Controls)
-                if (ctrl is TextBox)
-                {
-                    ctrl.Text = "";
-                }
-            }
         }
     }
 }
