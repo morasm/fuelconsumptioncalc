@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace FuelCost_ConsumptionCalculator
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
 
         Car carDBModel = new Car();
@@ -18,7 +18,13 @@ namespace FuelCost_ConsumptionCalculator
         Refuelling refuelDBModel = new Refuelling();
         Travel travelDBModel = new Travel();
 
-        public Form1()
+        private static int monthReport;
+
+        public static int MonthReport {
+            get { return monthReport; }
+        }
+
+        public MainForm()
         {
             InitializeComponent();
         }
@@ -30,6 +36,7 @@ namespace FuelCost_ConsumptionCalculator
             PopulateGridViewCar();
             FillDropdownUserList();
             FillDropdownCarList();
+            FillDropdownMonthList();
         }
         //section for adding refuelling
 
@@ -151,11 +158,14 @@ namespace FuelCost_ConsumptionCalculator
             userDBModel.LastName = txtLastName.Text.Trim();
             userDBModel.Email = txtEmail.Text.Trim();
 
-            using (FuelCalcEntities db = new FuelCalcEntities()) {
-                if (userDBModel.UserId == 0) {
+            using (FuelCalcEntities db = new FuelCalcEntities())
+            {
+                if (userDBModel.UserId == 0)
+                {
                     db.User.Add(userDBModel);
                 }
-                else {
+                else
+                {
                     db.Entry(userDBModel).State = System.Data.Entity.EntityState.Modified;
                 }
                 db.SaveChanges();
@@ -163,6 +173,7 @@ namespace FuelCost_ConsumptionCalculator
             ClearFrm();
             PopulateGridViewUser();
             MessageBox.Show("Submitted successfully!");
+
         }
 
         void PopulateGridViewUser() {
@@ -275,7 +286,7 @@ namespace FuelCost_ConsumptionCalculator
         void ClearFrm()
         {
             FormCleaner fc = new FormCleaner();
-            //txtEmail.Text = txtFirstName.Text = txtLastName.Text = txtAmount.Text = txtCost.Text = txtMileage.Text = txtCarMake.Text = txtCarModel.Text = txtCarRegNr.Text = "";
+            
             fc.ClearForm(tabControl1);
 
             btnCarDelete.Enabled = false;
@@ -284,6 +295,44 @@ namespace FuelCost_ConsumptionCalculator
             userDBModel.UserId = 0;
             btnUserSave.Text = "Save";
             btnCarSave.Text = "Save";
+        }
+
+
+        //section reports
+        private void BtnGenerateReport_Click(object sender, EventArgs e)
+        {
+            monthReport = Convert.ToInt32(cbMonthReport.SelectedValue);
+            Console.WriteLine(monthReport);
+            ReportForm reportForm = new ReportForm();
+            reportForm.Show();
+            reportForm.Activate();
+        }
+
+        private void FillDropdownMonthList()
+        {
+            using (FuelCalcEntities db = new FuelCalcEntities())
+            {
+                
+                var cbMonthDict = new Dictionary<int, string>();
+
+                cbMonthDict.Add(1,"Jan");
+                cbMonthDict.Add(2, "Feb");
+                cbMonthDict.Add(3, "Mar");
+                cbMonthDict.Add(4, "Apr");
+                cbMonthDict.Add(5, "May");
+                cbMonthDict.Add(6, "Jun");
+                cbMonthDict.Add(7, "Jul");
+                cbMonthDict.Add(8, "Aug");
+                cbMonthDict.Add(9, "Sep");
+                cbMonthDict.Add(10, "Oct");
+                cbMonthDict.Add(11, "Nov");
+                cbMonthDict.Add(12, "Dec");
+
+                cbMonthReport.DataSource = new BindingSource(cbMonthDict, null);
+                cbMonthReport.DisplayMember = "Value";
+                cbMonthReport.ValueMember = "Key";
+                
+            }
         }
     }
 }
