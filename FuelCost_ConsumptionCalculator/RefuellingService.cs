@@ -9,7 +9,7 @@ namespace FuelCost_ConsumptionCalculator
 {
     class RefuellingService : IDataService<Refuelling>
     {
-        private readonly Refuelling travelDBModel = new Refuelling();
+        private readonly Refuelling refuelDBModel = new Refuelling();
 
         public RefuellingService() { }
 
